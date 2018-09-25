@@ -17,7 +17,7 @@ Changes:
         ],
 ```
 * Add getUrl Method to Class AliyunOssAdapter, so you can use follow method
-* Upgrade aliyuncs/oss-sdk-php version from ~2.2.1 to >=2.2.1
+* Upgrade aliyuncs/oss-sdk-php version from ~2.2.1 to >=2.0
 ```php
 $url = Storage::cloud()->url($path);
 ``` 
