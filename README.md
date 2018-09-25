@@ -1,8 +1,16 @@
-# Flysystem Adapter for Aliyun OSS.
+# Flysystem Adapter for Aliyun OSS (Forked From apollopy/flysystem-aliyun-oss)
 
-This is a Flysystem adapter for the Aliyun OSS ~2.2.1
+This is a Flysystem adapter that forked from [apollopy/flysystem-aliyun-oss](https://github.com/apollopy/flysystem-aliyun-oss)
 
-inspire by [aobozhang/aliyun-oss-adapter](https://github.com/aobozhang/aliyun-oss-adapter)
+Changes:
+* Add isCName Configure
+* Add getUrl Method to Class AliyunOssAdapter, so you can use follow method
+* Upgrade aliyuncs/oss-sdk-php version from ~2.2.1 to >=2.2.1
+```php
+$url = Storage::cloud()->url($path);
+``` 
+
+# Original Readme
 
 ## Installation
 
