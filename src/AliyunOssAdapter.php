@@ -56,7 +56,7 @@ class AliyunOssAdapter extends AbstractAdapter
      * @param string    $prefix
      * @param array     $options
      */
-    public function __construct(OssClient $client, $bucket, $prefix = null, array $options = [])
+    public function __construct(OssClient $client, $bucket,$prefix = null, array $options = [])
     {
         $this->client = $client;
         $this->bucket = $bucket;
@@ -485,5 +485,19 @@ class AliyunOssAdapter extends AbstractAdapter
         }
 
         return $options;
+    }
+
+    /**
+     * @param string $path
+     * @return bool|string
+     */
+    public function getUrl($path) {
+        $url = $this->getSignedDownloadUrl($path);
+        $markPosition = strpos($url,'?');
+        if ($markPosition) {
+            return substr($url,0,$markPosition);
+        } else {
+            return $url;
+        }
     }
 }

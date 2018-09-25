@@ -28,13 +28,14 @@ class AliyunOssServiceProvider extends ServiceProvider
             $accessKey = $config['access_key'];
             $endPoint = $config['endpoint'];
             $bucket = $config['bucket'];
+            $isCName = $config['is_cname'];
 
             $prefix = null;
             if (isset($config['prefix'])) {
                 $prefix = $config['prefix'];
             }
 
-            $client = new OssClient($accessId, $accessKey, $endPoint);
+            $client = new OssClient($accessId, $accessKey, $endPoint,$isCName);
             $adapter = new AliyunOssAdapter($client, $bucket, $prefix);
 
             $filesystem = new Filesystem($adapter);
