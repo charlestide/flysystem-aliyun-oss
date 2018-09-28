@@ -44,6 +44,11 @@ class AliyunOssAdapter extends AbstractAdapter
 	 */
     protected $ssl;
 
+	/**
+	 * @var string
+	 */
+    protected $cname;
+
     /**
      * @var array
      */
@@ -60,15 +65,17 @@ class AliyunOssAdapter extends AbstractAdapter
      * @param string    $bucket
      * @param string    $prefix
      * @param bool      $ssl
+     * @param string    $cname
      * @param array     $options
      */
-    public function __construct(OssClient $client, $bucket,$prefix = null, $ssl = false, array $options = [])
+    public function __construct(OssClient $client, $bucket,$prefix = null, $ssl = false, $cname = '', array $options = [])
     {
         $this->client = $client;
         $this->bucket = $bucket;
         $this->setPathPrefix($prefix);
         $this->options = array_merge($this->options, $options);
         $this->ssl = $ssl;
+        $this->cname = $cname;
     }
 
     /**
@@ -499,7 +506,7 @@ class AliyunOssAdapter extends AbstractAdapter
      * @return bool|string
      */
     public function getUrl($path) {
-        $url = $this->getSignedDownloadUrl($path,3600,'',$this->ssl);
+        $url = $this->getSignedDownloadUrl($path,3600,$this->cname,$this->ssl);
         $markPosition = strpos($url,'?');
         if ($markPosition) {
             return substr($url,0,$markPosition);

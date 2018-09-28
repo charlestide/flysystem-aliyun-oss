@@ -28,7 +28,7 @@ class AliyunOssServiceProvider extends ServiceProvider
             $accessKey = $config['access_key'];
             $endPoint = $config['endpoint'];
             $bucket = $config['bucket'];
-            $isCName = $config['is_cname'];
+            $cname = $config['cname'];
             $ssl = (bool) $config['ssl'];
 
             $prefix = null;
@@ -36,8 +36,8 @@ class AliyunOssServiceProvider extends ServiceProvider
                 $prefix = $config['prefix'];
             }
 
-            $client = new OssClient($accessId, $accessKey, $endPoint,$isCName);
-            $adapter = new AliyunOssAdapter($client, $bucket, $prefix, $ssl);
+            $client = new OssClient($accessId, $accessKey, $endPoint,(bool)$cname);
+            $adapter = new AliyunOssAdapter($client, $bucket, $prefix, $ssl,$cname);
 
             $filesystem = new Filesystem($adapter);
             $filesystem->addPlugin(new PutFile());
