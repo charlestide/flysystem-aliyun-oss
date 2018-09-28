@@ -5,6 +5,7 @@ This is a Flysystem adapter that forked from [apollopy/flysystem-aliyun-oss](htt
 
 Changes:
 * Add isCName Configure, Now Configuration has new option named "is_cname"
+* Add SSL Configure, Now the ssl option specify whether use ssl
 ```php
         'oss' => [
             'driver'     => 'oss',
@@ -14,6 +15,7 @@ Changes:
             'endpoint'   => env('OSS_ENDPOINT','your endpoint'),
             'is_cname'   => env('OSS_IS_CNAME','is_cname'),
             'prefix'     => env('OSS_PREFIX', ''), // optional
+            'ssl'        => env('OSS_SSL', false)
         ],
 ```
 * Add getUrl Method to Class AliyunOssAdapter, so you can use follow method
